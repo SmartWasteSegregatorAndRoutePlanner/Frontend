@@ -4,7 +4,7 @@
 body{
     margin: 2px;
     padding: 5px;
-    background: white;
+    background: beige;
     font-family: 'Times New Roman', Times, serif;
     
 }
@@ -171,4 +171,19 @@ ul li a:hover{
     .navbar-links.active {
         display: flex;
     }
+}
+
+.data-analysis, .card
+{
+    align-items: center;
+    background-color: beige;
+    padding: 5px;
+    margin: auto;
+}
+
+.-analysis-description
+{
+    align-items: center;
+    padding: 3px;
+    margin: 3px;
 }
