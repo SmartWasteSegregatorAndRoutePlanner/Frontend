@@ -1,5 +1,5 @@
-$(document).ready(function(){
-    $('.toggle').click(function(){
-        $('.menu').toggleClass('active');
-    });
-});
+// $(document).ready(function(){
+//     $('.toggle').click(function(){
+//         $('.menu').toggleClass('active');
+//     });
+// }); // fix error
