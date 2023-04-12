@@ -71,11 +71,7 @@
                         updateRouteAlert("success", "User logged in!");
 
                         // fix redirect repo-name bug if hosted on github pages 
-                        if (String(window.location).includes("github.io")){
-                            window.location.href = String(window.location).split('github.io/')[1].split('/')[0] + '/';
-                        }else{
-                            window.location.href = "/";
-                        }
+                        window.location.href = "./";
                     }
                 })
                 .catch(function (error) {
