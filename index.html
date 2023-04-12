@@ -135,22 +135,25 @@
     <div class="section-3 route-planner">
         <div class="map-analysis">
             <div class="row row featurette">
-                <div class="col-md-4"></div>
-
                 <div class="col-md-4">
-                    <div class="card" style="width: 25rem;">
+                    <div class="card">
                         <img src="https://cdn.pixabay.com/photo/2016/11/25/18/30/tourist-1858958__340.jpg" class="card-img-top" alt="data-card-1" >
                         <div class="data-card-1">
                           <h5 class="map-analysis-title">MAP OF THE ROUTE PLANNER</h5>
                           <p class="map-analysis-description">The waste that has been continously segregated and whose data has been been integrated with the cloud is now available with the local garbage truck drivers of each  kind. <br>
                           Garbage of each type ie - Degradable and non degradable will now be shown to trucks and the   drivers can decide based on the quantity of the waste as to when to pick up at which point and  when to skip</p>
                           
-                          <button class="show-map" onclick="getMap()">Show points</button><br><br>
-                          <button class="update-map" onclick="updateMap()">Get updated map</button>
+                          <button class="btn btn-primary" onclick="updateMap()">Create Routes</button>
+                          <button class="btn btn-primary" onclick="getMap()">Fetch Routes</button><br><br>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="col-md-4"></div>
+                <div id="route-viewer" class="col">
+                    <div id="route-alert"></div>
+                    <div id="route-map" class="my-auto"></div>
+                </div>
+                
             </div>           
         </div>
     </div>
@@ -166,11 +169,16 @@
 
         // route-planner
         const routePlanner = '/route-planner/';
-        const updateRoutes = '/route-planner/update-routes/';
+        const updateRoutes = '/route-planner/update-routes';
 
 
         function getEndpoint(baseUrl, endpoint) {
             return baseUrl + endpoint + '?format=json';
+        }
+
+        function updateRouteAlert(alertType, message){
+            const routeAlert = document.getElementById("route-alert");
+            routeAlert.innerHTML = `<div class='alert alert-${alertType} alert-dismissible fade show' role='alert'>${message}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>`;
         }
 
         const api = axios.create({
@@ -179,25 +187,36 @@
 
         function getMap() {
             const endpoint = getEndpoint(baseUrl, routePlanner);
+            const routeMapTag = document.getElementById("route-map");
+
             api.get(endpoint)
                 .then(function (response) {
                     console.log(response.data);
+                    routeMapTag.innerHTML = response.data;
+                    updateRouteAlert("success", "Routes Fetched Successfully");
                     return response.data;
                 })
                 .catch(function (error) {
                     console.error(error);
+                    updateRouteAlert("danger", "Failed to fetch updated routes!");
                 })
         }
 
         function updateMap() {
             const endpoint = getEndpoint(baseUrl, updateRoutes);
+            updateRouteAlert("warning", "Routes are being calculated, Please wait for few seconds.");
             api.get(endpoint)
                 .then(function (response) {
                     console.log(response.data);
-
+                    if (response.status == 201){
+                        updateRouteAlert("success", "Routes are ready! Click on Fetch Routes Button to view Routes.");
+                    } else {
+                        updateRouteAlert("warning", )
+                    }
                     return response.data;
                 })
                 .catch(function (error) {
+                    updateRouteAlert("danger", "Failed to calculate routes! View console for more information.");
                     console.error(error);
                 })
         }
