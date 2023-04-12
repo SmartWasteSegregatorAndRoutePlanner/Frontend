@@ -2,9 +2,8 @@
 
 Built using - HTML, CSS< Bootstrap and Javascript
 
- Updates timeline 
-
- 6th Feb 2023 -- Pushed landing page and college introduction page - without animation
-              --  Working on animations and remaining pages, encountered few bugs
-
-
+Interacts with [Backend API](https://github.com/SmartWasteSegregatorAndRoutePlanner/Frontend) to perform below tasks:
+* Update Routes
+* Get Routes
+* Generate Auth token
+* Refresh Auth Token
