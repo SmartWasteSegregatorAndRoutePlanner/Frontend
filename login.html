@@ -69,7 +69,13 @@
                     if (response.status == 200) {
                         setAuthTokenCookie(response.data.access);
                         updateRouteAlert("success", "User logged in!");
-                        window.location.href = "/";
+
+                        // fix redirect repo-name bug if hosted on github pages 
+                        if (String(window.location).includes("github.io")){
+                            window.location.href = String(window.location).split("github.io/")[1];
+                        }else{
+                            window.location.href = "/";
+                        }
                     }
                 })
                 .catch(function (error) {
