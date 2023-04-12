@@ -78,8 +78,8 @@
             <ul>
                 <li><a href="#landing-page-1" target="_blank">Home</a></li>
                 <li><a href="#data-analysis" target="_self">Analytics</a></li>
-                <li><a href="./map.html" target="_blank">Map</a></li>
-                <li><a href="./log-in.html" target="_blank">Log in</a></li>
+                <li><a href="#route-planner" target="_self">Map</a></li>
+                
             </ul>
         </div>
     </nav>
@@ -120,7 +120,7 @@
                     <div class="data-card-1">
                       <h5 class="data-analysis-title">WASTE ANALYSIS</h5>
                       <p class="data-analysis-description">The waste that gets detected by the camera / conveyor belt while segregation gets classfied on the cloud model that differentiates between different types of waste and then gives data accordingly.</p>
-                      <a href="" class="btn btn-primary">See the suggested route map!</a>
+                      <button class="update-data" target="_blank" onclick=" ">Get data!</button>
                     </div>
                 </div>
             </div>
@@ -145,8 +145,8 @@
                           <p class="map-analysis-description">The waste that has been continously segregated and whose data has been been integrated with the cloud is now available with the local garbage truck drivers of each  kind. <br>
                           Garbage of each type ie - Degradable and non degradable will now be shown to trucks and the   drivers can decide based on the quantity of the waste as to when to pick up at which point and  when to skip</p>
                           
-                          <button class="show-map" onclick="getMap()">Show points</button><br><br>
-                          <button class="update-map" onclick="updateMap()">Get updated map</button>
+                          <button class="show-map" target="_blank"  onclick="getMap()">Show points</button><br><br>
+                          <button class="update-map" target="_blank" onclick="updateMap()">Get updated map</button>
                         </div>
                     </div>
                 </div>
@@ -157,8 +157,8 @@
     </section>
 
     <script>
-        const baseUrl = 'http://localhost:8000/api';
-
+         const baseUrl = 'http://localhost:8000/api';
+        
         // endpoints
         // authentication
         const loginToken = '/token/';
