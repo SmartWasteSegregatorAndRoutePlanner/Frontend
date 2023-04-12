@@ -77,7 +77,7 @@
         <div class="navbar-links">
             <ul>
                 <li><a href="#landing-page-1" target="_blank">Home</a></li>
-                <li><a href="./data.html" target="_blank">Analytics</a></li>
+                <li><a href="#data-analysis" target="_self">Analytics</a></li>
                 <li><a href="./map.html" target="_blank">Map</a></li>
                 <li><a href="./log-in.html" target="_blank">Log in</a></li>
             </ul>
@@ -107,6 +107,53 @@
             </div>
         </div>
     </div>
+
+
+    <!-- DATA ANALYSSIS OF WASTE SEGREGATION -->
+    <div class="section-2 data-analysis">
+        <div class="row row featurette">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="https://cdn.pixabay.com/photo/2016/11/27/21/42/stock-1863880_960_720.jpg" class="card-img-top" alt="data-card-1" >
+                    <div class="data-card-1">
+                      <h5 class="data-analysis-title">WASTE ANALYSIS</h5>
+                      <p class="data-analysis-description">The waste that gets detected by the camera / conveyor belt while segregation gets classfied on the cloud model that differentiates between different types of waste and then gives data accordingly.</p>
+                      <a href="" class="btn btn-primary">Get waste analysis!</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <br>
+
+    <section class="section-3">
+    <!--MAP AND ROUTE PANNER OF GARBAGE VANS-->
+    <div class="section-3 route-planner">
+        <div class="map-analysis">
+            <div class="row row featurette">
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4">
+                    <div class="card" style="width: 25rem;">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/25/18/30/tourist-1858958__340.jpg" class="card-img-top" alt="data-card-1" >
+                        <div class="data-card-1">
+                          <h5 class="map-analysis-title">MAP OF THE ROUTE PLANNER</h5>
+                          <p class="map-analysis-description">The waste that has been continously segregated and whose data has been been integrated with the cloud is now available with the local garbage truck drivers of each  kind. <br>
+                          Garbage of each type ie - Degradable and non degradable will now be shown to trucks and the   drivers can decide based on the quantity of the waste as to when to pick up at which point and  when to skip</p>
+                          <a href="" class="btn btn-primary">See the suggested route map!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>           
+        </div>
+    </div>
+    </section>
+
     <script>
         const baseUrl = 'http://localhost:8000/api';
 
@@ -145,6 +192,7 @@
             api.get(endpoint)
                 .then(function (response) {
                     console.log(response.data);
+
                     return response.data;
                 })
                 .catch(function (error) {

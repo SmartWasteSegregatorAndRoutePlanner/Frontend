@@ -188,4 +188,17 @@ ul li a:hover{
     background-color: azure;
 }
 
+.data-analysis, .card
+{
+    align-items: center;
+    background-color: beige;
+    padding: 5px;
+    margin: auto;
+}
+
+.-analysis-description
+{
+    align-items: center;
+    padding: 3px;
+    margin: 3px;
 }
