@@ -18,7 +18,7 @@
     <!--TAILWIND CSS CDN-->
 
     <!--FAVICON-->
-    <link rel="icon" type="image/x-icon" href="./static/images/landing-1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <!--CUSTOM STYLE LINKS-->
     <link rel="stylesheet" href="./static/css/style.css">
@@ -207,7 +207,11 @@
         }
 
         const api = axios.create({
-            timeout: 30000 // in ms
+            timeout: 30000, // in ms
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getAuthToken()
+            },
         });
 
         function getMap() {

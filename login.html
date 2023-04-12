@@ -50,25 +50,6 @@
             return baseUrl + endpoint + '?format=json';
         }
 
-        function setAuthTokenCookie(authToken) {
-            // avoid XSS
-            authToken = encodeURIComponent(authToken.replace('<', '').replace('>', ''));
-
-            // expiration days
-            const expirationDays = 1;
-            const d = new Date();
-            d.setTime(d.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + d.toUTCString();
-
-            // set cookie
-            const newCookie = "authToken" + "=" + authToken + ";" + expires + ";path=/";
-            if (document.cookie && document.cookie !== '') {
-                document.cookie = document.cookie + ";" + newCookie;
-            } else {
-                document.cookie = newCookie;
-            }
-        }
-
         function updateRouteAlert(alertType, message) {
             const routeAlert = document.getElementById("login-alert");
             routeAlert.innerHTML = `<div class='alert alert-${alertType} alert-dismissible fade show' role='alert'>${message}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>`;
