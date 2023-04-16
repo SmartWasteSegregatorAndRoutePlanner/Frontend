@@ -9,12 +9,16 @@ function setAuthTokenCookie(authToken) {
     const expires = "expires=" + d.toUTCString();
 
     // set cookie
-    const newCookie = "authToken" + "=" + authToken + ";" + expires + ";path=/";
-    if (document.cookie && document.cookie !== ''){
-        document.cookie = document.cookie + ";" + newCookie; 
-    } else {
-        document.cookie = newCookie;
-    }
+    document.cookie = "authToken" + "=" + authToken + ";" + expires + ";path=/";
+
+    // below code doesn't work
+    // if (document.cookie && document.cookie !== ''){
+    //     document.cookie = document.cookie + ";" + newCookie; 
+    //     console.log('updated cookie')
+    // } else {
+    //     document.cookie = newCookie;
+    //     console.log('new-cookie');
+    // }
 }
 
 function getAuthToken() {

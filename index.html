@@ -174,7 +174,6 @@
             </div>
 
             <div class="col-md-1"></div>
-
             <div class="col-md-6 landing-i1 rounded">
                 <img src="./static/images/landing-1.JPG" class="rounded border image-fluid">
             </div>
@@ -251,9 +250,9 @@
         }
 
         function refreshToken(token) {
-            const endpoint = getEndpoint(baseUrl, refreshToken);
+            const endpoint = getEndpoint(baseUrl, refreshAuthToken);
             api.post(endpoint, {
-                "refresh": refreshToken
+                "refresh": refreshAuthToken
             })
                 .then(function (response) {
                     console.log(response.data);
