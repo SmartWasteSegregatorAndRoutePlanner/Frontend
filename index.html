@@ -45,9 +45,9 @@
         </a>
         <div class="navbar-links">
             <ul>
-                <li><a href="/login.html" target="_blank"><strong>Login</strong></a></li>
                 <li><a href="#route-planner-section" target="_self">Route Planner</a></li>
                 <li><a href="#about-project" target="_self">About Project</a></li>
+                <li><a href="/login.html" target="_self" onclick="deleteAllCookies()"><strong>Logout</strong></a></li>
             </ul>
         </div>
     </nav>
@@ -78,11 +78,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>11</td>
+                                <td>12</td>
                                 <td>Rahul Gupta</td>
                             </tr>
                             <tr>
-                                <td>16</td>
+                                <td>18</td>
                                 <td>Shubh Kansara</td>
                             </tr>
                             <tr>
@@ -122,6 +122,18 @@
         </div>
     </div>
     <br> -->
+    <section id="classless-labels-section" class="mx-auto my-auto">
+        <div class="row my-auto mx-auto" id="classless-labels">
+            <h4 class="map-analysis-title"><strong>Classless Labels</strong></h4>
+            <div id="classless-labels-alert"></div>
+            <div id="classless-labels-table"></div>
+            <div>
+                <button class="btn btn-primary" onclick="getClasslessLabels()">Update Classess Labels
+                    List</button>
+            </div>
+
+        </div>
+    </section>
 
     <section class="section-3" id="route-planner-section">
         <!--MAP AND ROUTE PANNER OF GARBAGE VANS-->
@@ -133,7 +145,7 @@
                             <img src="https://cdn.pixabay.com/photo/2016/11/25/18/30/tourist-1858958__340.jpg"
                                 class="card-img-top" alt="data-card-1">
                             <div class="data-card-1">
-                                <h5 class="map-analysis-title">MAP OF THE ROUTE PLANNER</h5>
+                                <h5 class="map-analysis-title"><strong>ROUTE PLANNER MAP</strong></h5>
                                 <p class="map-analysis-description">The waste that has been continously segregated and
                                     whose data has been been integrated with the cloud is now available with the local
                                     garbage truck drivers of each kind. <br>
@@ -145,13 +157,11 @@
                                 <button class="btn btn-primary" onclick="getMap()">Fetch Routes</button><br><br>
                             </div>
                         </div>
-
                     </div>
                     <div id="route-viewer" class="col">
                         <div id="route-alert"></div>
                         <div id="route-map" class="my-auto"></div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -195,9 +205,16 @@
         const routePlanner = '/route-planner/';
         const updateRoutes = '/route-planner/update-routes';
 
+        // recognition
+        const recognition = '/recognition/recognize';
 
         function getEndpoint(baseUrl, endpoint) {
             return baseUrl + endpoint + '?format=json';
+        }
+
+        function updateClasslessLabelnAlert(alertType, message) {
+            const routeAlert = document.getElementById("classless-labels-alert");
+            routeAlert.innerHTML = `<div class='alert alert-${alertType} alert-dismissible fade show' role='alert'>${message}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>`;
         }
 
         function updateRouteAlert(alertType, message) {
@@ -263,8 +280,33 @@
                 })
         }
 
+        function getClasslessLabels() {
+            const endpoint = getEndpoint(baseUrl, recognition);
+            const tableTag = document.getElementById("classless-labels-table");
+
+            api.get(endpoint)
+                .then(function (response) {
+                    const unconfiguredLabels = response.data.unconfigured_labels;
+                    if (unconfiguredLabels) {
+                        let table = '<table class="table table-striped"><thead><tr><th scope="col">#</th><th scope="col">Label</th></tr></thead>';
+                        for (const unconfiguredLabel of unconfiguredLabels) {
+                            table += `<tr><th>${unconfiguredLabel.id}</th><td>${unconfiguredLabel.label}</td></tr>`
+                        }
+                        tableTag.innerHTML = table + '</table>';
+                    } else {
+                        tableTag.innerHTML = '';
+                    }
+                    console.log(response.data);
+                    updateClasslessLabelnAlert("success", response.data.msg);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    updateClasslessLabelnAlert("danger", "Failed to fetch Classess Labels!");
+                })
+        }
         // page init
-        updateRouteAlert("warning", "Click on Fetch Routes Button to Fetch Routes")
+        updateRouteAlert("warning", "Click on Fetch Routes Button to Fetch Routes");
+        getClasslessLabels();
 
     </script>
 </body>
